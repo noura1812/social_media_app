@@ -17,8 +17,10 @@ class HomeTab extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         if (state is GetPostsLoadingSate) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: CircularProgressIndicator(
+              color: AppColors.primaryGreenColor,
+            ),
           );
         } else if (state is GetPostsFailureSate) {
           return Center(

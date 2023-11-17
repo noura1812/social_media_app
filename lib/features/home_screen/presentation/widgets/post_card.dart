@@ -6,6 +6,7 @@ import 'package:social_media_app/core/utils/app_colors.dart';
 import 'package:social_media_app/core/utils/images.dart';
 import 'package:social_media_app/core/utils/text_styles.dart';
 import 'package:social_media_app/features/home_screen/domain/entities/post_data_entity.dart';
+import 'package:social_media_app/features/home_screen/presentation/widgets/expandble_text.dart';
 
 class PostCard extends StatelessWidget {
   final PostDataEntity postDataEntity;
@@ -50,8 +51,8 @@ class PostCard extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 20.h),
-            child: Text(
-              postDataEntity.postDataEntity.body ?? '',
+            child: ShowMoreTextWidget(
+              text: postDataEntity.postDataEntity.body ?? '',
               style: zillaSlab20W400(),
             ),
           ),
