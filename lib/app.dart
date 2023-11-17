@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: Themes.lightTheme,
         themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
+        initialRoute: 'home layout',
         onGenerateRoute: (settings) => AppRoutes.onGenerate(settings),
       ),
     );

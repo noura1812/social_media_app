@@ -4,6 +4,7 @@ class UserEntity {
   String? email;
   String? gender;
   String? status;
-
-  UserEntity({this.id, this.name, this.email, this.gender, this.status});
+  String? image;
+  UserEntity(
+      {this.id, this.name, this.email, this.gender, this.status, this.image});
 }

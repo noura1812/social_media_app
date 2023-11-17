@@ -31,7 +31,7 @@ class TextFieldWidget extends StatelessWidget {
           children: [
             Text(
               title,
-              style: poppins20W600(),
+              style: zillaSlab20W600(),
             ),
             const Spacer(),
             refresh ?? Container()

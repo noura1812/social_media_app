@@ -3,7 +3,11 @@ import 'package:social_media_app/core/utils/app_colors.dart';
 
 class Themes {
   static ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: AppColors.bGColor,
-    primaryColor: AppColors.primaryColor,
-  );
+      scaffoldBackgroundColor: AppColors.bGColor,
+      primaryColor: AppColors.primaryYalowColor,
+      appBarTheme: AppBarTheme(
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          color: AppColors.bGColor,
+          iconTheme: IconThemeData(color: AppColors.blackColor)));
 }

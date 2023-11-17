@@ -4,6 +4,7 @@ class UserModel extends UserEntity {
   String? message;
   UserModel(
       {this.message,
+      super.image,
       super.id,
       super.name,
       super.email,
