@@ -58,10 +58,13 @@ class PostCard extends StatelessWidget {
           ),
           Row(
             children: [
-              Icon(
-                Icons.favorite_border,
-                color: AppColors.blackColor,
-                size: 40.h,
+              GestureDetector(
+                onTap: () {},
+                child: Icon(
+                  Icons.favorite_border,
+                  color: AppColors.blackColor,
+                  size: 40.h,
+                ),
               ),
               SizedBox(
                 width: 10.w,
