@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_app/features/home_screen/presentation/pages/home_layout.dart';
 
 class Routes {
   static const String splashScreen = '/';
@@ -8,25 +9,17 @@ class Routes {
 
 class AppRoutes {
   static Route onGenerate(RouteSettings routeSettings) {
-    /*  switch (routeSettings.name) {
+    switch (routeSettings.name) {
       case Routes.homeLayOut:
         return MaterialPageRoute(
           builder: (context) => const HomeLayOut(),
         );
-      case Routes.settingsScreen:
-        return MaterialPageRoute(
-          settings: RouteSettings(arguments: routeSettings.arguments),
-          builder: (context) => SetUsersData(),
-        );
-      case Routes.splashScreen:
-        return MaterialPageRoute(
-          builder: (context) => const SplashScreen(),
-        );
-      default:}*/
-    {
-      return MaterialPageRoute(
-        builder: (context) => unDefineRoute(),
-      );
+      default:
+        {
+          return MaterialPageRoute(
+            builder: (context) => unDefineRoute(),
+          );
+        }
     }
   }
 
