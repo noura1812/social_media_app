@@ -13,17 +13,19 @@ import 'package:social_media_app/features/home_screen/data/models/user_model.dar
 
 class Remote extends GetPostsDataSource {
   Dio dio = Dio();
+  int page = 0;
 
   @override
   Future<Either<Failures, List<PostDataModel>>> getPostsData() async {
     try {
+      page++;
       Random random = Random();
       int index = 0;
 
-      var postsResponce =
-          await dio.get(Constants.goresBaseUrl + EndPoints.postsEndPint);
-      var usersResponce =
-          await dio.get(Constants.goresBaseUrl + EndPoints.usersEndPoint);
+      var postsResponce = await dio.get(
+          '${Constants.goresBaseUrl}${EndPoints.postsEndPint}?page=$page&per_page=20');
+      var usersResponce = await dio.get(
+          '${Constants.goresBaseUrl}${EndPoints.usersEndPoint}?page=$page&per_page=20');
 
       List<PostModel> posts = [];
       for (var post in postsResponce.data) {
