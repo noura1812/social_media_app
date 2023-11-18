@@ -27,27 +27,41 @@ class PostCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CircleAvatar(
-                radius: 32.r,
-                backgroundColor: AppColors.blackColor,
-                child: CircleAvatar(
-                  radius: 30.r,
-                  backgroundImage:
-                      AssetImage(postDataEntity.userDataEntity.image ?? ''),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 32.r,
+                  backgroundColor: AppColors.blackColor,
+                  child: CircleAvatar(
+                    radius: 30.r,
+                    backgroundImage:
+                        AssetImage(postDataEntity.userDataEntity.image ?? ''),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 15.w,
-              ),
-              Text(
-                postDataEntity.userDataEntity.name ?? '',
-                style: zillaSlab22W600(),
-              )
-            ],
+                SizedBox(
+                  width: 10.w,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      postDataEntity.userDataEntity.name ?? '',
+                      style: zillaSlab22W600(),
+                    ),
+                    /* Text(
+                      postDataEntity.postDataEntity.title ?? '',
+                      style: zillaSlab18W400().copyWith(
+                          color: AppColors.textDarkColor.withOpacity(.5)),
+                          maxLines: ,
+                    ),*/
+                  ],
+                )
+              ],
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 20.h),

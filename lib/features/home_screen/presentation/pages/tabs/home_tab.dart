@@ -8,27 +8,54 @@ import 'package:social_media_app/features/home_screen/presentation/cubit/home_sc
 import 'package:social_media_app/features/home_screen/presentation/widgets/new_post.dart';
 import 'package:social_media_app/features/home_screen/presentation/widgets/post_card.dart';
 
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  final listViewController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Setup the listener.
+    listViewController.addListener(() {
+      if (listViewController.position.atEdge) {
+        bool isTop = listViewController.position.pixels == 0;
+        if (!isTop) {
+          print('llllll');
+          HomeScreenCubit.get(context).getPosts();
+          setState(() {});
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeScreenCubit, HomeScreenState>(
       listener: (context, state) {},
       builder: (context, state) {
-        if (state is GetPostsLoadingSate) {
+        if (state is GetPostsLoadingSate &&
+            HomeScreenCubit.get(context).posts.isEmpty) {
           return Center(
             child: CircularProgressIndicator(
               color: AppColors.primaryGreenColor,
             ),
           );
-        } else if (state is GetPostsFailureSate) {
+        } else if (state is GetPostsFailureSate &&
+            HomeScreenCubit.get(context).posts.isEmpty) {
           return Center(
             child: Text(state.failures.toString()),
           );
         }
 
         return SingleChildScrollView(
+          controller: listViewController,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Column(
