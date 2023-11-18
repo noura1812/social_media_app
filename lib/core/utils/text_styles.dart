@@ -19,6 +19,10 @@ TextStyle zillaSlab20W600() => GoogleFonts.zillaSlab(
     fontSize: 20.sp,
     fontWeight: FontWeight.w600,
     color: AppColors.textDarkColor);
+TextStyle zillaSlab20W500() => GoogleFonts.zillaSlab(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textDarkColor);
 TextStyle zillaSlab30W400() => GoogleFonts.zillaSlab(
     fontSize: 30.sp,
     fontWeight: FontWeight.w400,
@@ -46,6 +50,10 @@ TextStyle zillaSlab22W400() => GoogleFonts.zillaSlab(
 TextStyle zillaSlab20W400() => GoogleFonts.zillaSlab(
     fontSize: 20.sp,
     fontWeight: FontWeight.w400,
+    color: AppColors.textDarkColor);
+TextStyle zillaSlab16W600() => GoogleFonts.zillaSlab(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
     color: AppColors.textDarkColor);
 TextStyle zillaSlab14W400() => GoogleFonts.zillaSlab(
     fontSize: 14.sp,

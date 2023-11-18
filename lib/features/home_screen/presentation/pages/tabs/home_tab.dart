@@ -86,6 +86,8 @@ class _HomeTabState extends State<HomeTab> {
                   itemCount: HomeScreenCubit.get(context).posts.length,
                   itemBuilder: (context, index) {
                     return PostCard(
+                        currentUserEntity:
+                            HomeScreenCubit.get(context).currentUser!,
                         postDataEntity:
                             HomeScreenCubit.get(context).posts[index]);
                   },
