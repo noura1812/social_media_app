@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:social_media_app/core/functions/numbers_format.dart';
 
 import 'package:social_media_app/core/utils/app_colors.dart';
 import 'package:social_media_app/core/utils/text_styles.dart';
 import 'package:social_media_app/features/comments_screen/domain/entities/comment_entity.dart';
+import 'package:social_media_app/features/comments_screen/presentation/cubit/comments_screen_cubit.dart';
 
 class CommentCard extends StatelessWidget {
   final CommentEntity comment;
@@ -16,7 +18,7 @@ class CommentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+      margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -52,9 +54,30 @@ class CommentCard extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          Padding(
-            padding: EdgeInsets.only(top: 14.r),
-            child: const Icon(Icons.favorite_outline),
+          Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  CommentsScreenCubit.get(context).like(comment);
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(top: 14.r, bottom: 5.h),
+                  child: comment.like
+                      ? const Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        )
+                      : Icon(
+                          Icons.favorite_outline,
+                          color: AppColors.blackColor,
+                        ),
+                ),
+              ),
+              Text(
+                numbersFormat(comment.likes),
+                style: zillaSlab16W600(),
+              )
+            ],
           )
         ],
       ),

@@ -18,7 +18,7 @@ class AppRoutes {
       case Routes.commentsScreen:
         return MaterialPageRoute(
           settings: RouteSettings(arguments: routeSettings.arguments),
-          builder: (context) => const CommentsScreen(),
+          builder: (context) => CommentsScreen(),
         );
       default:
         {

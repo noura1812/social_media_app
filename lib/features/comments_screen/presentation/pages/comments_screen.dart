@@ -6,13 +6,14 @@ import 'package:social_media_app/core/utils/app_colors.dart';
 import 'package:social_media_app/core/utils/images.dart';
 import 'package:social_media_app/core/utils/text_styles.dart';
 import 'package:social_media_app/core/utils/texts.dart';
+import 'package:social_media_app/features/comments_screen/domain/entities/comment_entity.dart';
 import 'package:social_media_app/features/comments_screen/domain/entities/comment_screen_data.dart';
 import 'package:social_media_app/features/comments_screen/presentation/cubit/comments_screen_cubit.dart';
 import 'package:social_media_app/features/comments_screen/presentation/widgets/comment_card.dart';
 import 'package:social_media_app/features/home_screen/presentation/cubit/home_screen_cubit.dart';
 
 class CommentsScreen extends StatelessWidget {
-  const CommentsScreen({super.key});
+  const CommentsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,8 @@ class CommentsScreen extends StatelessWidget {
       child: BlocConsumer<CommentsScreenCubit, CommentsScreenState>(
         listener: (context, state) {},
         builder: (context, state) {
-          if (state is GetCommentsLoadingSate) {
+          if (state is GetCommentsLoadingSate &&
+              CommentsScreenCubit.get(context).comments.isEmpty) {
             return Scaffold(
               body: Center(
                 child: CircularProgressIndicator(
@@ -38,7 +40,8 @@ class CommentsScreen extends StatelessWidget {
                 ),
               ),
             );
-          } else if (state is GetCommentsFailureSate) {
+          } else if (state is GetCommentsFailureSate &&
+              CommentsScreenCubit.get(context).comments.isEmpty) {
             return Scaffold(
               body: Center(
                 child: Text(state.failures.toString()),
@@ -70,15 +73,20 @@ class CommentsScreen extends StatelessWidget {
                         border: Border.all(
                             color: AppColors.blackColor, width: 1.w)),
                     child: SingleChildScrollView(
+                      controller:
+                          CommentsScreenCubit.get(context).listController,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: 20.w, right: 20.w, top: 20.h),
-                              child: PostContent(
-                                  functions: [() {}],
-                                  postDataEntity: commentScreenData.post),
+                                  left: 15.w, right: 15.w, top: 20.h),
+                              child: PostContent(functions: [
+                                () {
+                                  CommentsScreenCubit.get(context)
+                                      .goToTextField();
+                                }
+                              ], postDataEntity: commentScreenData.post),
                             ),
                             Container(
                               margin: EdgeInsets.symmetric(vertical: 10.h),
@@ -124,6 +132,12 @@ class CommentsScreen extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: TextField(
+                                      focusNode:
+                                          CommentsScreenCubit.get(context)
+                                              .focusNode,
+                                      controller:
+                                          CommentsScreenCubit.get(context)
+                                              .commentController,
                                       autofocus: true,
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
@@ -132,9 +146,24 @@ class CommentsScreen extends StatelessWidget {
                                               color: AppColors.textLightColor)),
                                     ),
                                   ),
-                                  ImageIcon(
-                                    const AssetImage(LocalImages.sendIcon),
-                                    color: AppColors.primaryPurpleColor,
+                                  GestureDetector(
+                                    onTap: () {
+                                      print('mmmmm');
+                                      print(CommentsScreenCubit.get(context)
+                                          .commentController
+                                          .text);
+                                      CommentEntity comment = CommentEntity(
+                                          image: commentScreenData
+                                              .currentUser.image,
+                                          name: commentScreenData
+                                              .currentUser.name);
+                                      CommentsScreenCubit.get(context)
+                                          .addComment(comment);
+                                    },
+                                    child: ImageIcon(
+                                      const AssetImage(LocalImages.sendIcon),
+                                      color: AppColors.primaryPurpleColor,
+                                    ),
                                   )
                                 ],
                               ),
