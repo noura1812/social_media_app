@@ -27,7 +27,6 @@ class _HomeTabState extends State<HomeTab> {
       if (listViewController.position.atEdge) {
         bool isTop = listViewController.position.pixels == 0;
         if (!isTop) {
-          print('llllll');
           HomeScreenCubit.get(context).getPosts();
           setState(() {});
         }
