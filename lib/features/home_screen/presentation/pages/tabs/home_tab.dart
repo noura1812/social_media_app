@@ -16,16 +16,16 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  final listViewController = ScrollController();
-
   @override
   void initState() {
     super.initState();
 
     // Setup the listener.
-    listViewController.addListener(() {
-      if (listViewController.position.atEdge) {
-        bool isTop = listViewController.position.pixels == 0;
+    HomeScreenCubit.get(context).listViewController.addListener(() {
+      if (HomeScreenCubit.get(context).listViewController.position.atEdge) {
+        bool isTop =
+            HomeScreenCubit.get(context).listViewController.position.pixels ==
+                0;
         if (!isTop) {
           HomeScreenCubit.get(context).getPosts();
           setState(() {});
@@ -75,7 +75,7 @@ class _HomeTabState extends State<HomeTab> {
             HomeScreenCubit.get(context).refresh();
           },
           child: SingleChildScrollView(
-            controller: listViewController,
+            controller: HomeScreenCubit.get(context).listViewController,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
@@ -125,11 +125,7 @@ class _HomeTabState extends State<HomeTab> {
                   state is GetPostsLoadingSate || state is GetPostsSuccessSate
                       ? Container()
                       : GestureDetector(
-                          onTap: () {
-                            listViewController.animateTo(0,
-                                duration: const Duration(seconds: 1),
-                                curve: Curves.easeInOut);
-                          },
+                          onTap: () {},
                           child: Center(
                             child: Text(
                               Texts.returnToTheTop,

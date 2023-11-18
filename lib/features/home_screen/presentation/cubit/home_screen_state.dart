@@ -15,6 +15,8 @@ class GetPostsSuccessSate extends HomeScreenState {}
 
 class Tab0State extends HomeScreenState {}
 
+class GoToTop extends HomeScreenState {}
+
 class Tab1State extends HomeScreenState {}
 
 class Tab2State extends HomeScreenState {}

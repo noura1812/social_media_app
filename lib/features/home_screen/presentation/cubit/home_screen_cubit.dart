@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_media_app/core/error/failures.dart';
 import 'package:social_media_app/features/home_screen/data/datasources/remot.dart';
@@ -18,6 +19,8 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   int tab = 0;
   int page = 0;
   HomeScreenCubit() : super(HomeScreenInitial());
+  final listViewController = ScrollController();
+
   static HomeScreenCubit get(context) => BlocProvider.of(context);
   getPosts() async {
     page++;
@@ -61,18 +64,29 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     emit(HomeScreenInitial());
   }
 
+  goToTop() {
+    listViewController.animateTo(0,
+        duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+    emit(GoToTop());
+    emit(Tab0State());
+  }
+
   changeTab(int index) {
     tab = index;
+    if (index == 0) {
+      goToTop();
+    } else {
+      switch (index) {
+        case 0:
+          emit(Tab0State());
 
-    switch (index) {
-      case 0:
-        emit(Tab0State());
-      case 1:
-        emit(Tab1State());
-      case 2:
-        emit(Tab2State());
-      case 3:
-        emit(Tab3State());
+        case 1:
+          emit(Tab1State());
+        case 2:
+          emit(Tab2State());
+        case 3:
+          emit(Tab3State());
+      }
     }
   }
 }
