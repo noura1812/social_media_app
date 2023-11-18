@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_app/features/comments_screen/presentation/pages/comments_screen.dart';
 import 'package:social_media_app/features/home_screen/presentation/pages/home_layout.dart';
+import 'package:social_media_app/splash%20screen/splash_screen.dart';
 
 class Routes {
   static const String splashScreen = '/';
@@ -18,7 +19,11 @@ class AppRoutes {
       case Routes.commentsScreen:
         return MaterialPageRoute(
           settings: RouteSettings(arguments: routeSettings.arguments),
-          builder: (context) => CommentsScreen(),
+          builder: (context) => const CommentsScreen(),
+        );
+      case Routes.splashScreen:
+        return MaterialPageRoute(
+          builder: (context) => const SplashScreen(),
         );
       default:
         {
