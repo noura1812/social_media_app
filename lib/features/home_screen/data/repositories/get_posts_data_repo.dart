@@ -11,6 +11,6 @@ class GetPostsDataRepo extends GetPostsDomainRepo {
     required this.getPostsDataSource,
   });
   @override
-  Future<Either<Failures, List<PostDataModel>>> getPosts() =>
-      getPostsDataSource.getPostsData();
+  Future<Either<Failures, List<PostDataModel>>> getPosts(int page) =>
+      getPostsDataSource.getPostsData(page);
 }

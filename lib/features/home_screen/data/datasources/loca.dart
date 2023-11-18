@@ -5,7 +5,7 @@ import 'package:social_media_app/features/home_screen/data/models/post_data_mode
 
 class Local extends GetPostsDataSource {
   @override
-  Future<Either<Failures, List<PostDataModel>>> getPostsData() {
+  Future<Either<Failures, List<PostDataModel>>> getPostsData(int page) {
     throw UnimplementedError();
   }
 }

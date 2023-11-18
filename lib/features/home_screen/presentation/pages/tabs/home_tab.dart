@@ -49,49 +49,72 @@ class _HomeTabState extends State<HomeTab> {
         } else if (state is GetPostsFailureSate &&
             HomeScreenCubit.get(context).posts.isEmpty) {
           return Center(
-            child: Text(state.failures.toString()),
+            child: SizedBox(
+              width: 300.w,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.warning_amber_rounded,
+                      color: AppColors.primaryPurpleColor, size: 100.h),
+                  Text(
+                    state.failures.toString(),
+                    style: zillaSlab24W400()
+                        .copyWith(color: AppColors.primaryPurpleColor),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
           );
         }
 
-        return SingleChildScrollView(
-          controller: listViewController,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 20.h,
-                ),
-                Text(
-                  'Hi, ${HomeScreenCubit.get(context).currentUser?.name}',
-                  style: zillaSlab26W600(),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Text(
-                  Texts.welcome,
-                  style: zillaSlab20W600()
-                      .copyWith(color: AppColors.blackColor.withOpacity(.5)),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                NewPost(userEntity: HomeScreenCubit.get(context).currentUser!),
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: HomeScreenCubit.get(context).posts.length,
-                  itemBuilder: (context, index) {
-                    return PostCard(
-                        currentUserEntity:
-                            HomeScreenCubit.get(context).currentUser!,
-                        postDataEntity:
-                            HomeScreenCubit.get(context).posts[index]);
-                  },
-                )
-              ],
+        return RefreshIndicator(
+          color: AppColors.primaryGreenColor,
+          onRefresh: () async {
+            HomeScreenCubit.get(context).refresh();
+          },
+          child: SingleChildScrollView(
+            controller: listViewController,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Text(
+                    'Hi, ${HomeScreenCubit.get(context).currentUser?.name}',
+                    style: zillaSlab26W600(),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    Texts.welcome,
+                    style: zillaSlab20W600()
+                        .copyWith(color: AppColors.blackColor.withOpacity(.5)),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  NewPost(
+                      userEntity: HomeScreenCubit.get(context).currentUser!),
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: HomeScreenCubit.get(context).posts.length,
+                    itemBuilder: (context, index) {
+                      return PostCard(
+                          currentUserEntity:
+                              HomeScreenCubit.get(context).currentUser!,
+                          postDataEntity:
+                              HomeScreenCubit.get(context).posts[index]);
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         );

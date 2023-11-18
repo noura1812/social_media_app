@@ -55,13 +55,14 @@ class CommentCard extends StatelessWidget {
           ),
           const Spacer(),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
                 onTap: () {
                   CommentsScreenCubit.get(context).like(comment);
                 },
                 child: Padding(
-                  padding: EdgeInsets.only(top: 14.r, bottom: 5.h),
+                  padding: EdgeInsets.only(top: 8.r),
                   child: comment.like
                       ? const Icon(
                           Icons.favorite,
