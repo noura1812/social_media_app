@@ -2,7 +2,9 @@ import 'package:social_media_app/features/home_screen/domain/entities/post_entit
 
 class PostModel extends PostEntity {
   String? message;
-  PostModel({this.message, super.id, super.userId, super.title, super.body});
+  int? id;
+  int? userId;
+  PostModel({this.message, this.id, this.userId, super.title, super.body});
 
   PostModel.fromJson(Map<String, dynamic> json) {
     if (json["id"] is int) {
