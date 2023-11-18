@@ -13,10 +13,9 @@ import 'package:social_media_app/features/home_screen/data/models/user_model.dar
 
 class Remote extends GetPostsDataSource {
   Dio dio = Dio();
-  int page = 0;
 
   @override
-  Future<Either<Failures, List<PostDataModel>>> getPostsData() async {
+  Future<Either<Failures, List<PostDataModel>>> getPostsData(int page) async {
     try {
       page++;
       Random random = Random();
@@ -46,9 +45,14 @@ class Remote extends GetPostsDataSource {
         postsData.add(
             PostDataModel(postDataEntity: posts[i], userDataEntity: users[i]));
       }
+
       return right(postsData);
     } catch (e) {
-      return left(ServerFailure(message: e.toString()));
+      String code = (e
+          .toString()
+          .substring(e.toString().length - 4, e.toString().length - 1));
+
+      return left(ServerFailure(message: code));
     }
   }
 }

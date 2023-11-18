@@ -16,9 +16,11 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   List<PostDataEntity> posts = [];
   UserEntity? currentUser;
   int tab = 0;
+  int page = 0;
   HomeScreenCubit() : super(HomeScreenInitial());
   static HomeScreenCubit get(context) => BlocProvider.of(context);
   getPosts() async {
+    page++;
     emit(GetPostsLoadingSate());
     Random random = Random();
 
@@ -26,7 +28,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         GetPostsDataRepo(getPostsDataSource: Remote());
     GetPostsUsecase getPostsUsecase =
         GetPostsUsecase(getPostsDomainRepo: getPostsDataRepo);
-    var result = await getPostsUsecase.call();
+    var result = await getPostsUsecase.call(page);
     result.fold((l) async {
       print(l);
       emit(GetPostsFailureSate(failures: l));
@@ -40,6 +42,11 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
       emit(GetPostsSuccessSate());
     });
+  }
+
+  Future refresh() async {
+    posts.clear();
+    await getPosts();
   }
 
   like(PostDataEntity post) {
