@@ -8,3 +8,14 @@ abstract class CommentsScreenState extends Equatable {
 }
 
 class CommentsScreenInitial extends CommentsScreenState {}
+
+class GetCommentsLoadingSate extends CommentsScreenState {}
+
+class GetCommentsSuccessSate extends CommentsScreenState {}
+
+class GetCommentsFailureSate extends CommentsScreenState {
+  final Failures failures;
+  const GetCommentsFailureSate({
+    required this.failures,
+  });
+}

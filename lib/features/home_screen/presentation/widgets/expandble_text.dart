@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_media_app/core/utils/app_colors.dart';
 
 class ShowMoreTextWidget extends StatefulWidget {
@@ -37,11 +38,13 @@ class _ShowMoreTextWidgetState extends State<ShowMoreTextWidget> {
     final isTextOverflowing = textPainter.didExceedMaxLines;
 
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _showMore = !_showMore;
-        });
-      },
+      onTap: isTextOverflowing || _showMore
+          ? () {
+              setState(() {
+                _showMore = !_showMore;
+              });
+            }
+          : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -51,13 +54,11 @@ class _ShowMoreTextWidgetState extends State<ShowMoreTextWidget> {
             overflow: TextOverflow.ellipsis,
           ),
           if (isTextOverflowing || _showMore)
-            Text(
-              _showMore ? widget.showLessText : widget.showMoreText,
-              style: TextStyle(
-                color: AppColors.primaryGreenColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Text(_showMore ? widget.showLessText : widget.showMoreText,
+                style: widget.style.copyWith(
+                    color: AppColors.primaryGreenColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp)),
         ],
       ),
     );
