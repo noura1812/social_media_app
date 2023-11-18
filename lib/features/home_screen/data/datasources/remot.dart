@@ -29,7 +29,10 @@ class Remote extends GetPostsDataSource {
 
       List<PostModel> posts = [];
       for (var post in postsResponce.data) {
-        posts.add(PostModel.fromJson((post)));
+        int likes = random.nextInt(10000);
+        PostModel postModel = PostModel.fromJson((post));
+        postModel.likes = likes;
+        posts.add(postModel);
       }
       List<UserModel> users = [];
       for (var user in usersResponce.data) {

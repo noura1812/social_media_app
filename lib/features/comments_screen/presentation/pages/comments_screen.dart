@@ -9,6 +9,7 @@ import 'package:social_media_app/core/utils/texts.dart';
 import 'package:social_media_app/features/comments_screen/domain/entities/comment_screen_data.dart';
 import 'package:social_media_app/features/comments_screen/presentation/cubit/comments_screen_cubit.dart';
 import 'package:social_media_app/features/comments_screen/presentation/widgets/comment_card.dart';
+import 'package:social_media_app/features/home_screen/presentation/cubit/home_screen_cubit.dart';
 
 class CommentsScreen extends StatelessWidget {
   const CommentsScreen({super.key});
@@ -18,8 +19,14 @@ class CommentsScreen extends StatelessWidget {
     CommentScreenData commentScreenData =
         ModalRoute.of(context)!.settings.arguments as CommentScreenData;
 
-    return BlocProvider(
-      create: (BuildContext context) => CommentsScreenCubit()..getComments(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CommentsScreenCubit>(
+          create: (context) => CommentsScreenCubit()..getComments(),
+        ),
+        BlocProvider<HomeScreenCubit>.value(
+            value: commentScreenData.homeScreenCubit),
+      ],
       child: BlocConsumer<CommentsScreenCubit, CommentsScreenState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -70,7 +77,7 @@ class CommentsScreen extends StatelessWidget {
                               padding: EdgeInsets.only(
                                   left: 20.w, right: 20.w, top: 20.h),
                               child: PostContent(
-                                  functions: [() {}, () {}],
+                                  functions: [() {}],
                                   postDataEntity: commentScreenData.post),
                             ),
                             Container(

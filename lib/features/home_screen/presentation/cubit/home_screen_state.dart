@@ -21,6 +21,8 @@ class Tab2State extends HomeScreenState {}
 
 class Tab3State extends HomeScreenState {}
 
+class LikeState extends HomeScreenState {}
+
 class GetPostsFailureSate extends HomeScreenState {
   final Failures failures;
   const GetPostsFailureSate({

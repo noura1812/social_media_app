@@ -42,10 +42,16 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     });
   }
 
+  like(PostDataEntity post) {
+    int index = posts.indexOf(post);
+    posts[index].postDataEntity.like = !posts[index].postDataEntity.like;
+    emit(LikeState());
+    emit(HomeScreenInitial());
+  }
+
   changeTab(int index) {
     tab = index;
-    print('kkkkfkf');
-    print(tab);
+
     switch (index) {
       case 0:
         emit(Tab0State());
