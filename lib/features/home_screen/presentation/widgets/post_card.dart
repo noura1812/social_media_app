@@ -52,6 +52,7 @@ class PostCard extends StatelessWidget {
                       postDataEntity.userDataEntity.name ?? '',
                       style: zillaSlab22W600(),
                     ),
+
                     /* Text(
                       postDataEntity.postDataEntity.title ?? '',
                       style: zillaSlab18W400().copyWith(
