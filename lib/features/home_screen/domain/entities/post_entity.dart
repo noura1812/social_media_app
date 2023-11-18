@@ -1,8 +1,7 @@
 class PostEntity {
-  int? id;
-  int? userId;
   String? title;
   String? body;
-
-  PostEntity({this.id, this.userId, this.title, this.body});
+  bool like;
+  int likes;
+  PostEntity({this.title, this.body, this.like = false, this.likes = 0});
 }

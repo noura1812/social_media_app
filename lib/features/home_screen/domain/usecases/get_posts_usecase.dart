@@ -9,6 +9,6 @@ class GetPostsUsecase {
   GetPostsUsecase({
     required this.getPostsDomainRepo,
   });
-  Future<Either<Failures, List<PostDataEntity>>> call() =>
-      getPostsDomainRepo.getPosts();
+  Future<Either<Failures, List<PostDataEntity>>> call(int page) =>
+      getPostsDomainRepo.getPosts(page);
 }

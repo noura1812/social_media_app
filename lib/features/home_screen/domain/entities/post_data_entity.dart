@@ -5,5 +5,6 @@ import 'package:social_media_app/features/home_screen/domain/entities/user_entit
 class PostDataEntity {
   PostEntity postDataEntity;
   UserEntity userDataEntity;
+
   PostDataEntity({required this.userDataEntity, required this.postDataEntity});
 }

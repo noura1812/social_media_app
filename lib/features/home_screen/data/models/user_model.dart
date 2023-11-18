@@ -2,13 +2,19 @@ import 'package:social_media_app/features/home_screen/domain/entities/user_entit
 
 class UserModel extends UserEntity {
   String? message;
+  int? id;
+  int? userId;
+  String? email;
+  String? gender;
+  String? status;
   UserModel(
       {this.message,
-      super.id,
+      super.image,
+      this.id,
       super.name,
-      super.email,
-      super.gender,
-      super.status});
+      this.email,
+      this.gender,
+      this.status});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     if (json["id"] is int) {
