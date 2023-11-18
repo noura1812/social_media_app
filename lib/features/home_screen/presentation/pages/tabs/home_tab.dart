@@ -112,7 +112,32 @@ class _HomeTabState extends State<HomeTab> {
                           postDataEntity:
                               HomeScreenCubit.get(context).posts[index]);
                     },
-                  )
+                  ),
+                  state is GetPostsLoadingSate || state is GetPostsSuccessSate
+                      ? Container()
+                      : Center(
+                          child: Text(
+                            Texts.noMorePosts,
+                            style: zillaSlab24W400().copyWith(
+                                color: AppColors.blackColor.withOpacity(.5)),
+                          ),
+                        ),
+                  state is GetPostsLoadingSate || state is GetPostsSuccessSate
+                      ? Container()
+                      : GestureDetector(
+                          onTap: () {
+                            listViewController.animateTo(0,
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.easeInOut);
+                          },
+                          child: Center(
+                            child: Text(
+                              Texts.returnToTheTop,
+                              style: zillaSlab24W400().copyWith(
+                                  color: AppColors.primaryPurpleColor),
+                            ),
+                          ),
+                        )
                 ],
               ),
             ),
