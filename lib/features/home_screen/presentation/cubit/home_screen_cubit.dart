@@ -45,6 +45,11 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   like(PostDataEntity post) {
     int index = posts.indexOf(post);
     posts[index].postDataEntity.like = !posts[index].postDataEntity.like;
+    if (posts[index].postDataEntity.like) {
+      posts[index].postDataEntity.likes++;
+    } else {
+      posts[index].postDataEntity.likes--;
+    }
     emit(LikeState());
     emit(HomeScreenInitial());
   }

@@ -11,6 +11,7 @@ import 'package:social_media_app/features/comments_screen/data/models/comment_mo
 
 class Remote extends GetCommentsDataSource {
   Dio dio = Dio();
+  Random random = Random();
 
   @override
   Future<Either<Failures, List<CommentModel>>> getCommentsData() async {
@@ -23,9 +24,11 @@ class Remote extends GetCommentsDataSource {
 
       List<CommentModel> comments = [];
       for (var comment in commentsResponce.data) {
+        int likes = random.nextInt(10000);
         index = random.nextInt(LocalImages.usersImages.length);
         CommentModel commentModel = CommentModel.fromJson((comment));
         commentModel.image = LocalImages.usersImages[index];
+        commentModel.likes = likes;
         comments.add(commentModel);
       }
 
