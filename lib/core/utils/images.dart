@@ -7,6 +7,9 @@ class LocalImages {
     'assets/images/person1.jpeg',
     'assets/images/person2.jpeg',
     'assets/images/person3.jpeg',
-    'assets/images/person4.jpeg'
+    'assets/images/person4.jpeg',
+    'assets/images/person5.jpeg',
+    'assets/images/person6.jpeg',
+    'assets/images/person7.jpeg'
   ];
 }
