@@ -13,7 +13,7 @@ class ShowMoreTextWidget extends StatefulWidget {
     super.key,
     required this.text,
     required this.style,
-    this.maxLines = 3,
+    this.maxLines = 4,
     this.showMoreText = 'Show more',
     this.showLessText = 'Show less',
   });

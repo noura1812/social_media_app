@@ -9,12 +9,14 @@ import 'package:social_media_app/core/utils/images.dart';
 import 'package:social_media_app/core/utils/text_styles.dart';
 import 'package:social_media_app/features/home_screen/domain/entities/post_data_entity.dart';
 import 'package:social_media_app/features/home_screen/presentation/cubit/home_screen_cubit.dart';
-import 'package:social_media_app/features/home_screen/presentation/widgets/expandble_text.dart';
+import 'package:social_media_app/core/reusable%20widgets/expandble_text.dart';
 
 class PostContent extends StatelessWidget {
+  final bool details;
   final PostDataEntity postDataEntity;
   final List<Function> functions;
   const PostContent({
+    this.details = false,
     required this.functions,
     Key? key,
     required this.postDataEntity,
@@ -62,13 +64,25 @@ class PostContent extends StatelessWidget {
                 const Icon(Icons.more_vert)
               ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.h),
-              child: ShowMoreTextWidget(
-                text: postDataEntity.postDataEntity.body ?? '',
-                style: zillaSlab20W500(),
-              ),
+            SizedBox(
+              height: 20.h,
             ),
+            Text(
+              postDataEntity.postDataEntity.title ?? '',
+              style: zillaSlab22W600().copyWith(color: AppColors.blackColor),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            details
+                ? Padding(
+                    padding: EdgeInsets.only(bottom: 20.h, top: 10.h),
+                    child: ShowMoreTextWidget(
+                      text: postDataEntity.postDataEntity.body ?? '',
+                      style: zillaSlab20W500(),
+                    ),
+                  )
+                : Container(),
             Row(
               children: [
                 GestureDetector(

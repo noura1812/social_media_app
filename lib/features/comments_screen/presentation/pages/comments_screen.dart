@@ -81,12 +81,15 @@ class CommentsScreen extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(
                                   left: 15.w, right: 15.w, top: 20.h),
-                              child: PostContent(functions: [
-                                () {
-                                  CommentsScreenCubit.get(context)
-                                      .goToTextField();
-                                }
-                              ], postDataEntity: commentScreenData.post),
+                              child: PostContent(
+                                  details: true,
+                                  functions: [
+                                    () {
+                                      CommentsScreenCubit.get(context)
+                                          .goToTextField();
+                                    }
+                                  ],
+                                  postDataEntity: commentScreenData.post),
                             ),
                             Container(
                               margin: EdgeInsets.symmetric(vertical: 10.h),
@@ -114,7 +117,7 @@ class CommentsScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
+                                  vertical: 10, horizontal: 15),
                               child: Row(
                                 children: [
                                   CircleAvatar(
