@@ -1,16 +1,23 @@
-# social_media_app
+# Flutter Social Media App
 
-A new Flutter project.
+This Flutter app is designed to demonstrate a posts screen , a post details and a splash screen screen using clean architecture with Cubit as a state management solution.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Display a list of posts on the posts screen
+- Show post details when a post is selected
+- Implement clean architecture principles for separation of concerns
+- Utilize Cubit for state management
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
+posts screen:
+![Screenshot_1700355654](https://github.com/noura1812/social_media_app/assets/108556485/d2ef3280-dae1-4642-9fd4-50804b7714cf)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+details and add comment screen:
+![Screenshot_1700355674](https://github.com/noura1812/social_media_app/assets/108556485/c65b561d-392d-4c62-86e7-58e24d9bbab4)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_1700355667](https://github.com/noura1812/social_media_app/assets/108556485/ff10c960-ec7c-4204-b56e-e7e5fc69f3d9)
+
+splash screen:
+![Screenshot_1700355733](https://github.com/noura1812/social_media_app/assets/108556485/b4d2f73f-077a-42a6-9056-0fdbff3ad1cb)
+
